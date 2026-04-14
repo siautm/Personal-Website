@@ -386,49 +386,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Memories Section */}
-      <section className="py-32 px-6 border-t border-border bg-muted/30">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="mb-4 tracking-tight" style={{ fontSize: "2.5rem" }}>Moments & Memories</h2>
-            <p className="text-muted-foreground mb-16">Capturing the journey through university life and beyond.</p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {[
-              "https://images.unsplash.com/photo-1632835256083-f044d6a859ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-              "https://images.unsplash.com/photo-1531497151418-0519708d443e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-              "https://images.unsplash.com/photo-1531497082986-2422f7b87330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-              "https://images.unsplash.com/photo-1531496681078-27dc2277e898?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-              "https://images.unsplash.com/photo-1663507898277-e4f94adc9333?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-              "https://images.unsplash.com/photo-1732209556962-df3c1334bc47?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"
-            ].map((image, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05, zIndex: 10 }}
-                className="group relative overflow-hidden rounded-xl aspect-square cursor-pointer"
-              >
-                <img
-                  src={image}
-                  alt={`Memory ${index + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Club Section */}
       <section className="py-32 px-6 border-t border-border">
         <div className="max-w-6xl mx-auto">
