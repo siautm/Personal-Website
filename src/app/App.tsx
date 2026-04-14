@@ -146,7 +146,7 @@ export default function App() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 rounded-3xl blur-3xl" />
                 <img
-                  src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+                  src="/img/siajunyi.jpg"
                   alt="Sia Jun Yi"
                   className="relative rounded-3xl w-full h-full object-cover border border-border shadow-2xl"
                 />
@@ -410,7 +410,7 @@ export default function App() {
             <div className="overflow-hidden rounded-2xl border border-border hover:border-foreground/20 transition-all duration-300">
               <div className="relative aspect-video overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1772587003187-65b32c91df91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200"
+                  src="/img/club.png"
                   alt="Chongde Volunteers Society"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -447,25 +447,28 @@ export default function App() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="mb-4 tracking-tight" style={{ fontSize: "2.5rem" }}>Activities</h2>
-            <p className="text-muted-foreground mb-16">Engaging in collaborative learning and technical exploration.</p>
+            <p className="text-muted-foreground mb-16">Volunteering, campus events, and hackathon-style learning outside the classroom.</p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                image: "https://images.unsplash.com/photo-1681164315051-add1906a9b07?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
-                title: "Tech Workshops",
-                description: "Organizing and participating in technical workshops"
+                image: "/img/mangrove.jpg",
+                title: "Mangrove Planting Activity",
+                description:
+                  "Coastal conservation with my club at Bakau Parit Kassim—planting mangroves to protect shorelines and support local ecosystems."
               },
               {
-                image: "https://images.unsplash.com/photo-1569653402334-2e98fbaa80ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
-                title: "Coding Sessions",
-                description: "Collaborative learning and code reviews"
+                image: "/img/opera.jpg",
+                title: "OPEN DAY RESAK 2025 (OPERA'25)",
+                description:
+                  "Activity crew for UTM's carnival-style open day: sports, cultural exhibitions, and an eat street—helping run events and welcome visitors."
               },
               {
-                image: "https://images.unsplash.com/photo-1531497082986-2422f7b87330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
-                title: "Project Building",
-                description: "Building projects and prototypes together"
+                image: "/img/ideathon.jpg",
+                title: "UTM AI IDEATHON",
+                description:
+                  "Team-based ideathon building a smart route application—combining AI-assisted routing ideas with rapid prototyping and group delivery."
               }
             ].map((activity, index) => (
               <motion.div
