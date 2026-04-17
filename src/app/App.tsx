@@ -1,11 +1,12 @@
 import { motion } from "motion/react";
 import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Award, GraduationCap, Code2, Database, Shield, Globe, Download, Palette, BookOpen, Wrench, Lightbulb, Rocket, Users, FileCheck, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DarkModeToggle } from "./components/DarkModeToggle";
 
 export default function App() {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
   const [activeCertIndex, setActiveCertIndex] = useState(0);
+  const [isCertHovered, setIsCertHovered] = useState(false);
 
   const skills = {
     technical: ["C++", "Java", "Python", "Web Development", "MySQL & PHP", "Cisco Networking", "Cybersecurity", "GitHub"],
@@ -117,6 +118,16 @@ export default function App() {
       certificate: "/_certificate_siajunyi-graduate-utm-my_ea73e03a-05b0-4b95-8ef3-67b2b258ae2d_(1).pdf"
     }
   ];
+
+  useEffect(() => {
+    if (isCertHovered) return;
+
+    const intervalId = window.setInterval(() => {
+      setActiveCertIndex((prev) => (prev === certifications.length - 1 ? 0 : prev + 1));
+    }, 4500);
+
+    return () => window.clearInterval(intervalId);
+  }, [isCertHovered, certifications.length]);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -676,7 +687,11 @@ export default function App() {
                 Certifications
               </h3>
 
-              <div className="space-y-4">
+              <div
+                className="space-y-4"
+                onMouseEnter={() => setIsCertHovered(true)}
+                onMouseLeave={() => setIsCertHovered(false)}
+              >
                 <motion.div
                   key={certifications[activeCertIndex].title}
                   initial={{ opacity: 0, x: -20 }}
@@ -739,6 +754,20 @@ export default function App() {
                     Next
                     <ChevronRight size={16} />
                   </button>
+                </div>
+
+                <div className="flex items-center justify-center gap-2">
+                  {certifications.map((cert, index) => (
+                    <button
+                      key={cert.title}
+                      type="button"
+                      aria-label={`Go to certificate ${index + 1}`}
+                      className={`h-2.5 w-2.5 rounded-full transition-all ${
+                        activeCertIndex === index ? "bg-foreground" : "bg-muted-foreground/40 hover:bg-muted-foreground/70"
+                      }`}
+                      onClick={() => setActiveCertIndex(index)}
+                    />
+                  ))}
                 </div>
               </div>
             </motion.div>
