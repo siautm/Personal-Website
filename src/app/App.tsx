@@ -597,6 +597,55 @@ export default function App() {
                 {[
                   {
                     date: "2026",
+                    title: "Java App Development Project: Fundamentals, OOP & File I/O",
+                    issuer: "SkillUp",
+                    credentialId: "8G4F2SVGWPZK",
+                    certificate: "https://www.coursera.org/account/accomplishments/verify/8G4F2SVGWPZK"
+                  },
+                  {
+                    date: "2026",
+                    title: "C++ Programming Fundamentals",
+                    issuer: "Microsoft",
+                    credentialId: "3CKMIHWL4P7Y",
+                    certificate: "https://www.coursera.org/account/accomplishments/verify/3CKMIHWL4P7Y"
+                  },
+                  {
+                    date: "2026",
+                    title: "Object Oriented Programming in Java",
+                    issuer: "IBM",
+                    credentialId: "HDIZO8ULYW33",
+                    certificate: "https://www.coursera.org/account/accomplishments/verify/HDIZO8ULYW33"
+                  },
+                  {
+                    date: "2026",
+                    title: "SQL Foundations",
+                    issuer: "Microsoft",
+                    credentialId: "2BSWF4QBN2F9",
+                    certificate: "https://www.coursera.org/account/accomplishments/verify/2BSWF4QBN2F9"
+                  },
+                  {
+                    date: "2026",
+                    title: "Java Programming for Beginners",
+                    issuer: "IBM",
+                    credentialId: "2Y9ZC0Z9IP7S",
+                    certificate: "https://www.coursera.org/account/accomplishments/verify/2Y9ZC0Z9IP7S"
+                  },
+                  {
+                    date: "2026",
+                    title: "HTML and CSS in depth",
+                    issuer: "Meta",
+                    credentialId: "V2541S2DGLNZ",
+                    certificate: "https://www.coursera.org/account/accomplishments/verify/V2541S2DGLNZ"
+                  },
+                  {
+                    date: "2026",
+                    title: "Introduction to Back-End Development",
+                    issuer: "Meta",
+                    credentialId: "ZWO5CFMQ24YJ",
+                    certificate: "https://www.coursera.org/account/accomplishments/verify/ZWO5CFMQ24YJ"
+                  },
+                  {
+                    date: "2026",
                     title: "CCNA: Enterprise Networking, Security, and Automation",
                     issuer: "Cisco",
                     certificate: "/CCNA-_Enterprise_Networking-_Security-_and_Automation_certificate_siajunyi-graduate-utm-my_8087fe31-abdb-4356-92d3-c75ffc7ddde4.pdf"
@@ -640,6 +689,9 @@ export default function App() {
                         <div className="flex-1">
                           <p className="text-muted-foreground text-sm mb-2">{cert.date} • {cert.issuer}</p>
                           <h4 className="mb-3 group-hover:text-primary transition-colors">{cert.title}</h4>
+                          {cert.credentialId && (
+                            <p className="text-muted-foreground text-xs">Credential ID: {cert.credentialId}</p>
+                          )}
                         </div>
                         <motion.a
                           href={cert.certificate}
