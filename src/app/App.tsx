@@ -5,7 +5,7 @@ import { DarkModeToggle } from "./components/DarkModeToggle";
 
 export default function App() {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
-  const [activeCertIndex, setActiveCertIndex] = useState(0);
+  const [currentCertPage, setCurrentCertPage] = useState(0);
   const [isCertHovered, setIsCertHovered] = useState(false);
 
   const skills = {
@@ -119,15 +119,22 @@ export default function App() {
     }
   ];
 
+  const certsPerPage = 5;
+  const totalCertPages = Math.ceil(certifications.length / certsPerPage);
+  const visibleCertifications = Array.from(
+    { length: Math.min(certsPerPage, certifications.length) },
+    (_, offset) => certifications[(currentCertPage * certsPerPage + offset) % certifications.length]
+  );
+
   useEffect(() => {
     if (isCertHovered) return;
 
     const intervalId = window.setInterval(() => {
-      setActiveCertIndex((prev) => (prev === certifications.length - 1 ? 0 : prev + 1));
+      setCurrentCertPage((prev) => (prev === totalCertPages - 1 ? 0 : prev + 1));
     }, 4500);
 
     return () => window.clearInterval(intervalId);
-  }, [isCertHovered, certifications.length]);
+  }, [isCertHovered, totalCertPages]);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -692,63 +699,67 @@ export default function App() {
                 onMouseEnter={() => setIsCertHovered(true)}
                 onMouseLeave={() => setIsCertHovered(false)}
               >
-                <motion.div
-                  key={certifications[activeCertIndex].title}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4 }}
-                  className="group"
-                >
-                  <div className="p-6 border border-border rounded-lg hover:border-foreground/20 transition-all duration-300 hover:shadow-lg">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1">
-                        <p className="text-muted-foreground text-sm mb-2">
-                          {certifications[activeCertIndex].date} • {certifications[activeCertIndex].issuer}
-                        </p>
-                        <h4 className="mb-3 group-hover:text-primary transition-colors">
-                          {certifications[activeCertIndex].title}
-                        </h4>
-                        {certifications[activeCertIndex].credentialId && (
-                          <p className="text-muted-foreground text-xs">
-                            Credential ID: {certifications[activeCertIndex].credentialId}
-                          </p>
-                        )}
+                <div className="grid gap-4 md:grid-cols-2">
+                  {visibleCertifications.map((cert, index) => (
+                    <motion.div
+                      key={`${cert.title}-${currentCertPage}-${index}`}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                      className="group"
+                    >
+                      <div className="p-6 border border-border rounded-lg hover:border-foreground/20 transition-all duration-300 hover:shadow-lg h-full">
+                        <div className="flex items-start justify-between gap-4">
+                          <div className="flex-1">
+                            <p className="text-muted-foreground text-sm mb-2">
+                              {cert.date} • {cert.issuer}
+                            </p>
+                            <h4 className="mb-3 group-hover:text-primary transition-colors">
+                              {cert.title}
+                            </h4>
+                            {cert.credentialId && (
+                              <p className="text-muted-foreground text-xs">
+                                Credential ID: {cert.credentialId}
+                              </p>
+                            )}
+                          </div>
+                          <motion.a
+                            href={cert.certificate}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-4 py-2 text-sm bg-muted hover:bg-accent rounded-lg transition-colors whitespace-nowrap"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            <FileCheck size={16} />
+                            View Certificate
+                          </motion.a>
+                        </div>
                       </div>
-                      <motion.a
-                        href={certifications[activeCertIndex].certificate}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 text-sm bg-muted hover:bg-accent rounded-lg transition-colors whitespace-nowrap"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <FileCheck size={16} />
-                        View Certificate
-                      </motion.a>
-                    </div>
-                  </div>
-                </motion.div>
+                    </motion.div>
+                  ))}
+                </div>
 
                 <div className="flex items-center justify-between">
                   <button
                     type="button"
                     className="inline-flex items-center gap-2 px-4 py-2 border border-border rounded-lg hover:bg-muted transition-colors"
                     onClick={() =>
-                      setActiveCertIndex((prev) => (prev === 0 ? certifications.length - 1 : prev - 1))
+                      setCurrentCertPage((prev) => (prev === 0 ? totalCertPages - 1 : prev - 1))
                     }
                   >
                     <ChevronLeft size={16} />
                     Prev
                   </button>
                   <p className="text-sm text-muted-foreground">
-                    {activeCertIndex + 1} / {certifications.length}
+                    {currentCertPage + 1} / {totalCertPages}
                   </p>
                   <button
                     type="button"
                     className="inline-flex items-center gap-2 px-4 py-2 border border-border rounded-lg hover:bg-muted transition-colors"
                     onClick={() =>
-                      setActiveCertIndex((prev) => (prev === certifications.length - 1 ? 0 : prev + 1))
+                      setCurrentCertPage((prev) => (prev === totalCertPages - 1 ? 0 : prev + 1))
                     }
                   >
                     Next
@@ -757,15 +768,15 @@ export default function App() {
                 </div>
 
                 <div className="flex items-center justify-center gap-2">
-                  {certifications.map((cert, index) => (
+                  {Array.from({ length: totalCertPages }, (_, index) => (
                     <button
-                      key={cert.title}
+                      key={`cert-page-${index}`}
                       type="button"
-                      aria-label={`Go to certificate ${index + 1}`}
+                      aria-label={`Go to certificate page ${index + 1}`}
                       className={`h-2.5 w-2.5 rounded-full transition-all ${
-                        activeCertIndex === index ? "bg-foreground" : "bg-muted-foreground/40 hover:bg-muted-foreground/70"
+                        currentCertPage === index ? "bg-foreground" : "bg-muted-foreground/40 hover:bg-muted-foreground/70"
                       }`}
-                      onClick={() => setActiveCertIndex(index)}
+                      onClick={() => setCurrentCertPage(index)}
                     />
                   ))}
                 </div>
