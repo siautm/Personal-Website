@@ -1,10 +1,11 @@
 import { motion } from "motion/react";
-import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Award, GraduationCap, Code2, Database, Shield, Globe, Download, Palette, BookOpen, Wrench, Lightbulb, Rocket, Users, FileCheck } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Award, GraduationCap, Code2, Database, Shield, Globe, Download, Palette, BookOpen, Wrench, Lightbulb, Rocket, Users, FileCheck, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { DarkModeToggle } from "./components/DarkModeToggle";
 
 export default function App() {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+  const [activeCertIndex, setActiveCertIndex] = useState(0);
 
   const skills = {
     technical: ["C++", "Java", "Python", "Web Development", "MySQL & PHP", "Cisco Networking", "Cybersecurity", "GitHub"],
@@ -33,6 +34,88 @@ export default function App() {
     { name: "Chinese", level: "Fluent" },
     { name: "Malay", level: "Fluent" },
     { name: "Japanese", level: "N2" }
+  ];
+
+  const certifications = [
+    {
+      date: "2026",
+      title: "Java App Development Project: Fundamentals, OOP & File I/O",
+      issuer: "SkillUp",
+      credentialId: "8G4F2SVGWPZK",
+      certificate: "/Coursera Java App Development Project.pdf"
+    },
+    {
+      date: "2026",
+      title: "C++ Programming Fundamentals",
+      issuer: "Microsoft",
+      credentialId: "3CKMIHWL4P7Y",
+      certificate: "/Coursera C++ fundamental.pdf"
+    },
+    {
+      date: "2026",
+      title: "Object Oriented Programming in Java",
+      issuer: "IBM",
+      credentialId: "HDIZO8ULYW33",
+      certificate: "/Coursera OOP in java.pdf"
+    },
+    {
+      date: "2026",
+      title: "SQL Foundations",
+      issuer: "Microsoft",
+      credentialId: "2BSWF4QBN2F9",
+      certificate: "/Coursera SQL foundation.pdf"
+    },
+    {
+      date: "2026",
+      title: "Java Programming for Beginners",
+      issuer: "IBM",
+      credentialId: "2Y9ZC0Z9IP7S",
+      certificate: "/Coursera Java for beginner.pdf"
+    },
+    {
+      date: "2026",
+      title: "HTML and CSS in depth",
+      issuer: "Meta",
+      credentialId: "V2541S2DGLNZ",
+      certificate: "/Coursera HTML and CSS.pdf"
+    },
+    {
+      date: "2026",
+      title: "Introduction to Back-End Development",
+      issuer: "Meta",
+      credentialId: "ZWO5CFMQ24YJ",
+      certificate: "/Coursera Introduction to backend.pdf"
+    },
+    {
+      date: "2026",
+      title: "CCNA: Enterprise Networking, Security, and Automation",
+      issuer: "Cisco",
+      certificate: "/CCNA-_Enterprise_Networking-_Security-_and_Automation_certificate_siajunyi-graduate-utm-my_8087fe31-abdb-4356-92d3-c75ffc7ddde4.pdf"
+    },
+    {
+      date: "2026",
+      title: "Programming with JavaScript",
+      issuer: "Meta",
+      certificate: "/Coursera_SPEKV2T2IY5Z.pdf"
+    },
+    {
+      date: "2026",
+      title: "Programming in Python",
+      issuer: "Meta",
+      certificate: "/Coursera_0KYMMIVF90EC.pdf"
+    },
+    {
+      date: "2025",
+      title: "CCNA: Switching, Routing, and Wireless Essentials",
+      issuer: "Cisco",
+      certificate: "/CCNA-_Switching-_Routing-_and_Wireless_Essentials_certificate_siajunyi-graduate-utm-my_5e906465-cb32-4035-87b0-351745387573.pdf"
+    },
+    {
+      date: "2025",
+      title: "CCNA: Introduction to Networks",
+      issuer: "Cisco",
+      certificate: "/_certificate_siajunyi-graduate-utm-my_ea73e03a-05b0-4b95-8ef3-67b2b258ae2d_(1).pdf"
+    }
   ];
 
   return (
@@ -594,120 +677,69 @@ export default function App() {
               </h3>
 
               <div className="space-y-4">
-                {[
-                  {
-                    date: "2026",
-                    title: "Java App Development Project: Fundamentals, OOP & File I/O",
-                    issuer: "SkillUp",
-                    credentialId: "8G4F2SVGWPZK",
-                    certificate: "https://www.coursera.org/account/accomplishments/verify/8G4F2SVGWPZK"
-                  },
-                  {
-                    date: "2026",
-                    title: "C++ Programming Fundamentals",
-                    issuer: "Microsoft",
-                    credentialId: "3CKMIHWL4P7Y",
-                    certificate: "https://www.coursera.org/account/accomplishments/verify/3CKMIHWL4P7Y"
-                  },
-                  {
-                    date: "2026",
-                    title: "Object Oriented Programming in Java",
-                    issuer: "IBM",
-                    credentialId: "HDIZO8ULYW33",
-                    certificate: "https://www.coursera.org/account/accomplishments/verify/HDIZO8ULYW33"
-                  },
-                  {
-                    date: "2026",
-                    title: "SQL Foundations",
-                    issuer: "Microsoft",
-                    credentialId: "2BSWF4QBN2F9",
-                    certificate: "https://www.coursera.org/account/accomplishments/verify/2BSWF4QBN2F9"
-                  },
-                  {
-                    date: "2026",
-                    title: "Java Programming for Beginners",
-                    issuer: "IBM",
-                    credentialId: "2Y9ZC0Z9IP7S",
-                    certificate: "https://www.coursera.org/account/accomplishments/verify/2Y9ZC0Z9IP7S"
-                  },
-                  {
-                    date: "2026",
-                    title: "HTML and CSS in depth",
-                    issuer: "Meta",
-                    credentialId: "V2541S2DGLNZ",
-                    certificate: "https://www.coursera.org/account/accomplishments/verify/V2541S2DGLNZ"
-                  },
-                  {
-                    date: "2026",
-                    title: "Introduction to Back-End Development",
-                    issuer: "Meta",
-                    credentialId: "ZWO5CFMQ24YJ",
-                    certificate: "https://www.coursera.org/account/accomplishments/verify/ZWO5CFMQ24YJ"
-                  },
-                  {
-                    date: "2026",
-                    title: "CCNA: Enterprise Networking, Security, and Automation",
-                    issuer: "Cisco",
-                    certificate: "/CCNA-_Enterprise_Networking-_Security-_and_Automation_certificate_siajunyi-graduate-utm-my_8087fe31-abdb-4356-92d3-c75ffc7ddde4.pdf"
-                  },
-                  {
-                    date: "2026",
-                    title: "Programming with JavaScript",
-                    issuer: "Meta",
-                    certificate: "/Coursera_SPEKV2T2IY5Z.pdf"
-                  },
-                  {
-                    date: "2026",
-                    title: "Programming in Python",
-                    issuer: "Meta",
-                    certificate: "/Coursera_0KYMMIVF90EC.pdf"
-                  },
-                  {
-                    date: "2025",
-                    title: "CCNA: Switching, Routing, and Wireless Essentials",
-                    issuer: "Cisco",
-                    certificate: "/CCNA-_Switching-_Routing-_and_Wireless_Essentials_certificate_siajunyi-graduate-utm-my_5e906465-cb32-4035-87b0-351745387573.pdf"
-                  },
-                  {
-                    date: "2025",
-                    title: "CCNA: Introduction to Networks",
-                    issuer: "Cisco",
-                    certificate: "/_certificate_siajunyi-graduate-utm-my_ea73e03a-05b0-4b95-8ef3-67b2b258ae2d_(1).pdf"
-                  }
-                ].map((cert, index) => (
-                  <motion.div
-                    key={cert.title}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    whileHover={{ x: 4 }}
-                    className="group"
-                  >
-                    <div className="p-6 border border-border rounded-lg hover:border-foreground/20 transition-all duration-300 hover:shadow-lg">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex-1">
-                          <p className="text-muted-foreground text-sm mb-2">{cert.date} • {cert.issuer}</p>
-                          <h4 className="mb-3 group-hover:text-primary transition-colors">{cert.title}</h4>
-                          {cert.credentialId && (
-                            <p className="text-muted-foreground text-xs">Credential ID: {cert.credentialId}</p>
-                          )}
-                        </div>
-                        <motion.a
-                          href={cert.certificate}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 px-4 py-2 text-sm bg-muted hover:bg-accent rounded-lg transition-colors whitespace-nowrap"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <FileCheck size={16} />
-                          View Certificate
-                        </motion.a>
+                <motion.div
+                  key={certifications[activeCertIndex].title}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4 }}
+                  className="group"
+                >
+                  <div className="p-6 border border-border rounded-lg hover:border-foreground/20 transition-all duration-300 hover:shadow-lg">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1">
+                        <p className="text-muted-foreground text-sm mb-2">
+                          {certifications[activeCertIndex].date} • {certifications[activeCertIndex].issuer}
+                        </p>
+                        <h4 className="mb-3 group-hover:text-primary transition-colors">
+                          {certifications[activeCertIndex].title}
+                        </h4>
+                        {certifications[activeCertIndex].credentialId && (
+                          <p className="text-muted-foreground text-xs">
+                            Credential ID: {certifications[activeCertIndex].credentialId}
+                          </p>
+                        )}
                       </div>
+                      <motion.a
+                        href={certifications[activeCertIndex].certificate}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2 text-sm bg-muted hover:bg-accent rounded-lg transition-colors whitespace-nowrap"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <FileCheck size={16} />
+                        View Certificate
+                      </motion.a>
                     </div>
-                  </motion.div>
-                ))}
+                  </div>
+                </motion.div>
+
+                <div className="flex items-center justify-between">
+                  <button
+                    type="button"
+                    className="inline-flex items-center gap-2 px-4 py-2 border border-border rounded-lg hover:bg-muted transition-colors"
+                    onClick={() =>
+                      setActiveCertIndex((prev) => (prev === 0 ? certifications.length - 1 : prev - 1))
+                    }
+                  >
+                    <ChevronLeft size={16} />
+                    Prev
+                  </button>
+                  <p className="text-sm text-muted-foreground">
+                    {activeCertIndex + 1} / {certifications.length}
+                  </p>
+                  <button
+                    type="button"
+                    className="inline-flex items-center gap-2 px-4 py-2 border border-border rounded-lg hover:bg-muted transition-colors"
+                    onClick={() =>
+                      setActiveCertIndex((prev) => (prev === certifications.length - 1 ? 0 : prev + 1))
+                    }
+                  >
+                    Next
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
               </div>
             </motion.div>
           </div>
