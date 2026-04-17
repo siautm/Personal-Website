@@ -119,7 +119,7 @@ export default function App() {
     }
   ];
 
-  const certsPerPage = 5;
+  const certsPerPage = 6;
   const totalCertPages = Math.ceil(certifications.length / certsPerPage);
   const visibleCertifications = Array.from(
     { length: Math.min(certsPerPage, certifications.length) },
